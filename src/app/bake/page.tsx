@@ -13,15 +13,32 @@ import {
   Stepper,
   useSteps,
 } from "@chakra-ui/react";
+import { Levain } from "../ui/bake/levain";
 
 const steps = [
-  { title: "Levain", description: "Create your levain" },
-  { title: "Autolyse", description: "Mix water & flour" },
-  { title: "Bulk fermentation", description: "Stretch and fold" },
-  { title: "Divide & preshape", description: "Let it rest on the counter" },
-  { title: "Shaping", description: "Shape into a boule, batard, baguette" },
-  { title: "Proofing", description: "Let the gluten do the wonder" },
-  { title: "Baking", description: "Bake your bread" },
+  { title: "Levain", description: "Create your levain", component: <Levain /> },
+  { title: "Autolyse", description: "Mix water & flour", component: null },
+  {
+    title: "Bulk fermentation",
+    description: "Stretch and fold",
+    component: null,
+  },
+  {
+    title: "Divide & preshape",
+    description: "Let it rest on the counter",
+    component: null,
+  },
+  {
+    title: "Shaping",
+    description: "Shape into a boule, batard, baguette",
+    component: null,
+  },
+  {
+    title: "Proofing",
+    description: "Let the gluten do the wonder",
+    component: null,
+  },
+  { title: "Baking", description: "Bake your bread", component: null },
 ];
 
 export default function BakePage() {
@@ -33,9 +50,14 @@ export default function BakePage() {
   return (
     <Box>
       <Heading as="h1" size="2xl">
-        Farine: make better bread
+        Steps
       </Heading>
-      <Stepper index={activeStep} orientation="vertical" colorScheme="teal">
+      <Stepper
+        marginTop={10}
+        index={activeStep}
+        orientation="vertical"
+        colorScheme="teal"
+      >
         {steps.map((step, index) => (
           <Step key={index}>
             <StepIndicator onClick={() => setActiveStep(index)}>
@@ -49,6 +71,7 @@ export default function BakePage() {
             <Box flexShrink="0">
               <StepTitle>{step.title}</StepTitle>
               <StepDescription>{step.description}</StepDescription>
+              {index === activeStep && step.component}
             </Box>
 
             <StepSeparator />
