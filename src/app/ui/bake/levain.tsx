@@ -13,7 +13,7 @@ import {
 export function Levain() {
   const ingredients = [
     {
-      name: "Active sourdough starer",
+      name: "Active sourdough starter",
       id: "sourdough",
     },
     {
