@@ -16,34 +16,52 @@ import {
 import { Levain } from "../ui/bake/levain";
 
 const steps = [
-  { title: "Levain", description: "Create your levain", component: <Levain /> },
-  { title: "Autolyse", description: "Mix water & flour", component: null },
   {
+    key: "levain",
+    title: "Levain",
+    description: "Create your levain",
+    component: <Levain />,
+  },
+  {
+    key: "autolyse",
+    title: "Autolyse",
+    description: "Mix water & flour",
+    component: null,
+  },
+  {
+    key: "bulk",
     title: "Bulk fermentation",
     description: "Stretch and fold",
     component: null,
   },
   {
+    key: "divide",
     title: "Divide & preshape",
     description: "Let it rest on the counter",
     component: null,
   },
   {
+    key: "shaping",
     title: "Shaping",
     description: "Shape into a boule, batard, baguette",
     component: null,
   },
   {
+    key: "proofing",
     title: "Proofing",
     description: "Let the gluten do the wonder",
     component: null,
   },
-  { title: "Baking", description: "Bake your bread", component: null },
+  {
+    key: "baking",
+    title: "Baking",
+    description: "Bake your bread",
+    component: null,
+  },
 ];
 
 export default function BakePage() {
   const { activeStep, setActiveStep } = useSteps({
-    index: 1,
     count: steps.length,
   });
 
@@ -59,7 +77,7 @@ export default function BakePage() {
         colorScheme="teal"
       >
         {steps.map((step, index) => (
-          <Step key={index}>
+          <Step key={step.key}>
             <StepIndicator onClick={() => setActiveStep(index)}>
               <StepStatus
                 complete={<StepIcon />}
