@@ -26,7 +26,6 @@ export function Levain() {
     },
   ];
 
-  const waitingTimeInMinutes = 180;
   return (
     <Box>
       <form>
