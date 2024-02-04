@@ -13,7 +13,7 @@ import {
   Stepper,
   useSteps,
 } from "@chakra-ui/react";
-import { Levain } from "../ui/bake/levain";
+import { Levain } from "@/components/recipes/levain";
 
 const steps = [
   {
@@ -65,6 +65,13 @@ export default function BakePage() {
     count: steps.length,
   });
 
+  const toggleActiveStep = (index) => {
+    if (index === activeStep) {
+      setActiveStep(-1);
+    } else {
+      setActiveStep(index);
+    }
+  };
   return (
     <Box>
       <Heading as="h1" size="2xl">
@@ -77,8 +84,8 @@ export default function BakePage() {
         colorScheme="teal"
       >
         {steps.map((step, index) => (
-          <Step key={step.key}>
-            <StepIndicator onClick={() => setActiveStep(index)}>
+          <Step onClick={() => toggleActiveStep(index)} key={step.key}>
+            <StepIndicator>
               <StepStatus
                 complete={<StepIcon />}
                 incomplete={<StepNumber />}
