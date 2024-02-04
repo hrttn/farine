@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${oxygen.className} antialiased`}>
         <Providers>
-          <Container>
+          <Container maxW="container.lg">
             <TopNav />
             {children}
           </Container>

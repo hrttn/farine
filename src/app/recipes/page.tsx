@@ -1,108 +1,13 @@
 "use client";
-import {
-  Box,
-  Heading,
-  Step,
-  StepDescription,
-  StepIcon,
-  StepIndicator,
-  StepNumber,
-  StepSeparator,
-  StepStatus,
-  StepTitle,
-  Stepper,
-  useSteps,
-} from "@chakra-ui/react";
-import { Levain } from "@/components/recipes/levain";
-
-const steps = [
-  {
-    key: "levain",
-    title: "Levain",
-    description: "Create your levain",
-    component: <Levain />,
-  },
-  {
-    key: "autolyse",
-    title: "Autolyse",
-    description: "Mix water & flour",
-    component: null,
-  },
-  {
-    key: "bulk",
-    title: "Bulk fermentation",
-    description: "Stretch and fold",
-    component: null,
-  },
-  {
-    key: "divide",
-    title: "Divide & preshape",
-    description: "Let it rest on the counter",
-    component: null,
-  },
-  {
-    key: "shaping",
-    title: "Shaping",
-    description: "Shape into a boule, batard, baguette",
-    component: null,
-  },
-  {
-    key: "proofing",
-    title: "Proofing",
-    description: "Let the gluten do the wonder",
-    component: null,
-  },
-  {
-    key: "baking",
-    title: "Baking",
-    description: "Bake your bread",
-    component: null,
-  },
-];
+import { Box, Heading } from "@chakra-ui/react";
 
 export default function BakePage() {
-  const { activeStep, setActiveStep } = useSteps({
-    count: steps.length,
-  });
-
-  const toggleActiveStep = (index) => {
-    if (index === activeStep) {
-      setActiveStep(-1);
-    } else {
-      setActiveStep(index);
-    }
-  };
   return (
     <Box>
       <Heading as="h1" size="2xl">
-        Steps
+        Create your recipe
       </Heading>
-      <Stepper
-        marginTop={10}
-        index={activeStep}
-        orientation="vertical"
-        colorScheme="teal"
-      >
-        {steps.map((step, index) => (
-          <Step onClick={() => toggleActiveStep(index)} key={step.key}>
-            <StepIndicator>
-              <StepStatus
-                complete={<StepIcon />}
-                incomplete={<StepNumber />}
-                active={<StepNumber />}
-              />
-            </StepIndicator>
-
-            <Box flexShrink="0">
-              <StepTitle>{step.title}</StepTitle>
-              <StepDescription>{step.description}</StepDescription>
-              {index === activeStep && step.component}
-            </Box>
-
-            <StepSeparator />
-          </Step>
-        ))}
-      </Stepper>
+      This is where you set up your recipe
     </Box>
   );
 }

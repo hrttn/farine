@@ -4,7 +4,7 @@ import { Spacer, Flex, Center, HStack } from "@chakra-ui/react";
 
 export default function TopNav() {
   return (
-    <Flex as="nav" marginBottom={5}>
+    <Flex as="nav" marginBottom={10}>
       <Link href="/">
         <Image src="/farine.png" width={100} height={100} alt="Farine" />
       </Link>
