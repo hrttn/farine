@@ -5,6 +5,7 @@ import { oxygen } from "@/components/fonts";
 import TopNav from "@/components/nav";
 import { Container } from "@chakra-ui/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   title: "Farine: Bake Better Bread",
   description:
@@ -26,6 +27,7 @@ export default function RootLayout({
           </Container>
         </Providers>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
