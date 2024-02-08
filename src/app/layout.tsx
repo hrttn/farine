@@ -6,8 +6,9 @@ import TopNav from "@/components/nav";
 import { Container } from "@chakra-ui/react";
 
 export const metadata: Metadata = {
-  title: "Farine: make better bread",
-  description: "Make better bread",
+  title: "Farine: Bake Better Bread",
+  description:
+    "Bake Better Bread and Boost Your Baking Skills with Farine: Your Baking Buddy",
 };
 
 export default function RootLayout({
