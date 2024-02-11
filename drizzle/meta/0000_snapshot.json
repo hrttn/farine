@@ -1,0 +1,312 @@
+{
+  "id": "20f20c1b-b366-4a83-8675-ace2df3e039f",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "AvailableIngredients": {
+      "name": "AvailableIngredients",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ingredient_type_id": {
+          "name": "ingredient_type_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "AvailableIngredients_ingredient_type_id_IngredientTypes_id_fk": {
+          "name": "AvailableIngredients_ingredient_type_id_IngredientTypes_id_fk",
+          "tableFrom": "AvailableIngredients",
+          "tableTo": "IngredientTypes",
+          "columnsFrom": [
+            "ingredient_type_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "AvailableIngredients_name_unique": {
+          "name": "AvailableIngredients_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      }
+    },
+    "AvailableSteps": {
+      "name": "AvailableSteps",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "required": {
+          "name": "required",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "step_number": {
+          "name": "step_number",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "AvailableSteps_name_unique": {
+          "name": "AvailableSteps_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      }
+    },
+    "IngredientTypes": {
+      "name": "IngredientTypes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "IngredientTypes_name_unique": {
+          "name": "IngredientTypes_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      }
+    },
+    "IngredientsInRecipe": {
+      "name": "IngredientsInRecipe",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "weight_in_grams": {
+          "name": "weight_in_grams",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "temperature_in_celsius": {
+          "name": "temperature_in_celsius",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "available_ingredient_id": {
+          "name": "available_ingredient_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "step_in_recipe_id": {
+          "name": "step_in_recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "IngredientsInRecipe_available_ingredient_id_AvailableIngredients_id_fk": {
+          "name": "IngredientsInRecipe_available_ingredient_id_AvailableIngredients_id_fk",
+          "tableFrom": "IngredientsInRecipe",
+          "tableTo": "AvailableIngredients",
+          "columnsFrom": [
+            "available_ingredient_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "IngredientsInRecipe_step_in_recipe_id_Steps_id_fk": {
+          "name": "IngredientsInRecipe_step_in_recipe_id_Steps_id_fk",
+          "tableFrom": "IngredientsInRecipe",
+          "tableTo": "Steps",
+          "columnsFrom": [
+            "step_in_recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Recipes": {
+      "name": "Recipes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Steps": {
+      "name": "Steps",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "instructions": {
+          "name": "instructions",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "duration_in_minutes": {
+          "name": "duration_in_minutes",
+          "type": "interval minute",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "desired_dough_temperature_in_celsius": {
+          "name": "desired_dough_temperature_in_celsius",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "available_step_id": {
+          "name": "available_step_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Steps_recipe_id_Recipes_id_fk": {
+          "name": "Steps_recipe_id_Recipes_id_fk",
+          "tableFrom": "Steps",
+          "tableTo": "Recipes",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Steps_available_step_id_AvailableSteps_id_fk": {
+          "name": "Steps_available_step_id_AvailableSteps_id_fk",
+          "tableFrom": "Steps",
+          "tableTo": "AvailableSteps",
+          "columnsFrom": [
+            "available_step_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
