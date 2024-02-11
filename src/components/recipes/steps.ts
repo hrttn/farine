@@ -1,8 +1,8 @@
 interface Step {
-  key: string;
-  title: string;
-  description: string;
-  slug: string;
+  key: string
+  title: string
+  description: string
+  slug: string
 }
 
 export const steps: Step[] = [
@@ -60,4 +60,4 @@ export const steps: Step[] = [
     description: "Bake your bread",
     slug: "baking",
   },
-];
+]

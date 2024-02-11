@@ -1,12 +1,20 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Spacer, Flex, Center, HStack } from "@chakra-ui/react";
+import Link from "next/link"
+import Image from "next/image"
+import { Spacer, Flex, Center, HStack } from "@chakra-ui/react"
 
 export default function TopNav() {
   return (
-    <Flex as="nav" marginBottom={10}>
+    <Flex
+      as="nav"
+      marginBottom={10}
+    >
       <Link href="/">
-        <Image src="/farine.png" width={100} height={100} alt="Farine" />
+        <Image
+          src="/farine.png"
+          width={100}
+          height={100}
+          alt="Farine"
+        />
       </Link>
       <Spacer />
       <HStack spacing={10}>
@@ -21,5 +29,5 @@ export default function TopNav() {
         </Center>
       </HStack>
     </Flex>
-  );
+  )
 }

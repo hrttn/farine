@@ -3,5 +3,5 @@ export default function Home() {
     <main>
       <h1>Farine: make better bread</h1>
     </main>
-  );
+  )
 }

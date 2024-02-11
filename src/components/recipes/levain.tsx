@@ -8,7 +8,7 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"
 
 export function Levain() {
   const ingredients = [
@@ -24,7 +24,7 @@ export function Levain() {
       name: "Flour",
       id: "flour",
     },
-  ];
+  ]
 
   return (
     <Box>
@@ -33,7 +33,11 @@ export function Levain() {
           <label key={ingredient.id}>
             {ingredient.name}:
             <InputGroup size="md">
-              <NumberInput min={1} maxW={24} focusBorderColor="teal">
+              <NumberInput
+                min={1}
+                maxW={24}
+                focusBorderColor="teal"
+              >
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
@@ -46,9 +50,13 @@ export function Levain() {
         ))}
         <label>
           Waiting time:
-          <Input color="teal" type="time" size="md" />
+          <Input
+            color="teal"
+            type="time"
+            size="md"
+          />
         </label>
       </form>
     </Box>
-  );
+  )
 }

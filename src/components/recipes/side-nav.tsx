@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {
   Box,
   Step,
@@ -11,21 +11,29 @@ import {
   StepTitle,
   Stepper,
   useSteps,
-} from "@chakra-ui/react";
-import { steps } from "./steps";
-import NextLink from "next/link";
-import { Link } from "@chakra-ui/react";
+} from "@chakra-ui/react"
+import { steps } from "./steps"
+import NextLink from "next/link"
+import { Link } from "@chakra-ui/react"
 
 export default function SideNav() {
   const { activeStep } = useSteps({
     count: steps.length,
-  });
+  })
 
   return (
     <Box marginRight={20}>
-      <Stepper index={activeStep} orientation="vertical" colorScheme="teal">
+      <Stepper
+        index={activeStep}
+        orientation="vertical"
+        colorScheme="teal"
+      >
         {steps.map((step) => (
-          <Link key={step.key} as={NextLink} href={`/recipes/${step.slug}`}>
+          <Link
+            key={step.key}
+            as={NextLink}
+            href={`/recipes/${step.slug}`}
+          >
             <Step>
               <StepIndicator>
                 <StepStatus
@@ -44,5 +52,5 @@ export default function SideNav() {
         ))}
       </Stepper>
     </Box>
-  );
+  )
 }

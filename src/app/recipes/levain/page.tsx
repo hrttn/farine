@@ -1,6 +1,6 @@
-"use client";
-import { Levain } from "@/components/recipes/levain";
-import { Box, Heading } from "@chakra-ui/react";
+"use client"
+import { Levain } from "@/components/recipes/levain"
+import { Box, Heading } from "@chakra-ui/react"
 
 export default function LevainPage() {
   return (
@@ -8,5 +8,5 @@ export default function LevainPage() {
       <Heading size="xl">Levain</Heading>
       <Levain />
     </Box>
-  );
+  )
 }
