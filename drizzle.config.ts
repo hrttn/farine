@@ -6,7 +6,7 @@ if (!connectionString) {
   throw new Error("Missing Postgres url, please fill POSTGRES_URL variable")
 }
 export default {
-  schema: "./src/db/schema/*.ts",
+  schema: "./src/database/schema/*.ts",
   out: "./drizzle",
   driver: "pg",
   dbCredentials: {
