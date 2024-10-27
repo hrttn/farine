@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/hrttn/farine/compare/v1.0.0...v1.1.0) (2024-10-27)
+
+
+### Features
+
+* 🧑‍💻 add docker to the project ([1924cc8](https://github.com/hrttn/farine/commit/1924cc8ca92ce474eb6b9c403d8d8573aac7b87f))
+
 # 1.0.0 (2024-10-27)
 
 
