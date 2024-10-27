@@ -1,24 +1,64 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Getting Started
 
-First, run the development server:
+Here’s the Docker setup section formatted in Markdown for your README:
+
+## Setup with Docker
+
+You can run this project in a Docker container to ensure consistency across environments. Follow the steps below to set up and run the application with Docker.
+
+### Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/) installed on your machine
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Steps to Run the Project
+
+1.  **Clone the Repository**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  **Build the Docker Image**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Use Docker Compose to build the image. This will install dependencies and set up the environment.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+docker-compose build
+```
+
+3.  **Run the Container**
+
+Start the container using Docker Compose. This command will start the application and make it accessible on [http://localhost:3000](http://localhost:3000).
+
+```bash
+docker-compose up
+```
+
+The application will now be running with hot-reloading enabled in development mode.
+
+4. **Access the Application**
+
+Open a web browser and navigate to [http://localhost:3000](http://localhost:3000)
+
+5.	**Stopping the Container**
+
+To stop the running container, press `CTRL+C` in the terminal or run:
+
+```bash
+docker-compose down
+```
+
+## Running Tests in Docker
+
+To run tests inside the Docker container, you can use:
+
+```bash
+docker-compose run app npm test
+```
 
 ## Learn More
 

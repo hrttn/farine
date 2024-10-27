@@ -1,0 +1,28 @@
+# Node modules (dependencies will be installed in Docker)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build and output directories
+.next
+out  
+
+# Local environment files
+.env
+.env.* 
+
+# OS and editor-specific files
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+*.swp
+*.swo
+
+# Git files
+.git
+.gitignore
+
+# Docker ignore itself and Docker compose files
+.dockerignore
+docker-compose.yml
