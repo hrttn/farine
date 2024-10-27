@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${BUILD_ENV:-dev} # Uses the `BUILD_ENV` variable; defaults to `dev` if not set
+    ports:
+      - "3000:3000" # Exposes the app on port 3000
+    environment:
+      NODE_ENV: ${NODE_ENV:-development} # Defaults to 'development' if NODE_ENV is not set
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3000} # Example for a public API URL
+    volumes:
+      - .:/app # Syncs code changes in dev mode for hot reload
+      - /app/node_modules # Avoids node_modules conflict
