@@ -17,7 +17,7 @@ export default function TopNav() {
         />
       </Link>
       <Spacer />
-      <HStack spacing={10}>
+      <HStack spaceX={10}>
         <Center>
           <Link href="/recipes">My recipes</Link>
         </Center>
