@@ -52,8 +52,9 @@ jobs:
       - name: Deploy to Vercel Preview
         id: deploy_preview
         run: |
-          PREVIEW_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }} --confirm)
-          echo "PREVIEW_URL=$PREVIEW_URL" >> $GITHUB_ENV
+          PREVIEW_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }} --yes)
+          echo "Preview deployment URL: $PREVIEW_URL"
+          echo "::set-output name=PREVIEW_URL::$PREVIEW_URL"
 
   e2e-tests:
     needs: deploy-preview
@@ -70,7 +71,7 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright E2E Tests
         env:
-          BASE_URL: ${{ env.PREVIEW_URL }}
+          BASE_URL: ${{ needs.deploy-preview.outputs.PREVIEW_URL }}
         run: npm run test:e2e
 
   promote:

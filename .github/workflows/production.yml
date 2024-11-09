@@ -23,9 +23,9 @@ jobs:
       - name: Deploy Project Artifacts to Production Preview
         id: deploy_preview
         run: |
-          PREVIEW_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }} --confirm)
+          PREVIEW_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }} --yes)
           echo "PREVIEW_URL=$PREVIEW_URL" >> $GITHUB_ENV
-          echo "Preview deployment URL: $PREVIEW_URL"
+          echo "::set-output name=PREVIEW_URL::$PREVIEW_URL"
 
   E2E-Tests:
     needs: Deploy-Preview
@@ -42,7 +42,7 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright E2E Tests
         env:
-          BASE_URL: ${{ env.PREVIEW_URL }}
+          BASE_URL: ${{ needs.deploy-preview.outputs.PREVIEW_URL }}
         run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
