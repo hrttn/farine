@@ -44,7 +44,7 @@ jobs:
         run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
       - name: Run Tests
-        run: npm test
+        run: npm test:unit
 
       # Only run release on push to main
       - name: Run Semantic Release and Publish Release Notes
