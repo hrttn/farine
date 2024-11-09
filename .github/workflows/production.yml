@@ -1,0 +1,69 @@
+name: Production deployment
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write # for checkout and releases
+  issues: write # for commenting on released issues
+
+jobs:
+  Deploy-Preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Production Preview
+        id: deploy_preview
+        run: |
+          PREVIEW_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }} --confirm)
+          echo "PREVIEW_URL=$PREVIEW_URL" >> $GITHUB_ENV
+          echo "Preview deployment URL: $PREVIEW_URL"
+
+  E2E-Tests:
+    needs: Deploy-Preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright E2E Tests
+        env:
+          BASE_URL: ${{ env.PREVIEW_URL }}
+        run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+  Deploy-Production:
+    needs: E2E-Tests
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Semantic Release and Publish Release Notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install semantic-release @semantic-release/changelog @semantic-release/git
+          npx semantic-release
+      - uses: actions/checkout@v4
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Promote Preview to Production
+        run: vercel deploy promote --token=${{ secrets.VERCEL_TOKEN }}
