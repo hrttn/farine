@@ -9,7 +9,9 @@
     "lint": "next lint --fix",
     "prepare": "node .husky/install.mjs",
     "start": "next start",
-    "test": "vitest"
+    "test:e2e": "npx playwright test",
+    "test:unit": "vitest",
+    "test": "npm run test:unit && npm run test:e2e"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
@@ -31,6 +33,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
+    "@playwright/test": "^1.48.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^12.0.1",
